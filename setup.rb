@@ -4,6 +4,9 @@
 #   [ ] either clone or use the package manager to get those 
 #   [ ] start w/ a bash or fish script to make sure that ruby is actually installed first
 #       and install it if it isn't.
+#   [ ] Generate a list of install packages
+#       Debian  - `dpkg -–get-selections`
+#       Arch    - ``
 
 BEGIN{
   require 'yaml'
@@ -22,10 +25,10 @@ BEGIN{
                   And_cmd + "curl -LSso #{Vim_dir}/autoload/pathogen.vim " +
                   "https://tpo.pe/pathogen.vim "
 
-  Data_filename = 'data.yml'
+  Data_filename = Dir.pwd + '/data.yml'
 
-  $data          ={
-                    vim_plugins:    [],
+  $data         ={
+                    vim_plugins:    {}, # name: '', url: '',
                     git_repos:      {}, # name: '', url: '',
                     blacklisted:    ['ipup', 'Question_Of_The_Day', 'dot-files', 'golang', '99bottles'], # These are the ones i'm working on
   }
@@ -83,47 +86,67 @@ def install_each_git_repo(repo={base_gh_dir: '', repo_url: '', name: ''})
 end
 
 def grep_vim_gits(dir=Vim_dir)
-  plugins = []
-  Dir.chdir(File.join(Vim_dir, 'bundle'))
-  Dir.each_child do |plugin_dir|
+  plugins = {}
+  url = ''
+  vim_dir = File.join(Vim_dir, 'bundle')
+  Dir.chdir(vim_dir)
+
+  Dir.each_child(vim_dir) do |plugin_dir|
     if File.directory?(plugin_dir)
-      Dir.chdir('.git')
+      Dir.chdir(File.join(plugin_dir, '.git'))
+
       File.open('config', 'r') do |conf_file|
+        
         conf_file.each_line do |lin|
           if lin.include?('url = ')
-            plugins.push(lin.split(' ').last)
+            url = lin.split(' ').last
           end
         end # each conf file line
+
       end # File.open gh config file / close the file
+
+      plugins.update(plugin_dir.to_sym => url.to_s)
+    else
+      next
     end # is plugin_dir a directory?
-  end
+
+    Dir.chdir('../..')
+  end # each_child
 
   return plugins
 end
 
 def create_data_file # initial write out and update file
   gh_repos = {}
+  url = ''
   Dir.chdir(Git_dir)
-  Dir.each_child do |dir|
-    if File.directory?(dir) && !$data[:blacklisted].include?(dir)
+
+  Dir.each_child(Git_dir) do |dir|
+    if File.directory?(dir) # && !$data[:blacklisted].include?(dir)
       Dir.chdir(File.join(dir, '.git'))
+     
       File.open('config', 'r') do |conf_file|
+
         conf_file.each_line do |lin|
           if lin.include?('url = ')
             url = lin.split(' ').last
           end # if lin has 'url = '
         end # each line of conf_file
+
       end # File.open gh config file / close the file
-      gh_repos[dir.to_sym] = url.to_s
+      
+      gh_repos.update(dir.to_sym => url.to_s)
     else
       next
     end # if dir is a [directory] and isn't blasklisted
+    Dir.chdir('../..')
   end # each object in the directory less '.' and '..'
 
   $data[:git_repos]       = gh_repos
   $data[:vim_plugins]     = grep_vim_gits 
 
-  File.open($data[:data_filename], 'w') {|f|
+  pp $data
+  File.open(Data_filename, 'w') {|f|
     f.write($data.to_yaml)
   }
 end
@@ -157,5 +180,5 @@ begin ###################### MAIN PROGRAM ######################
   #   for each vimplugin
   #     clone plugin
   #       resuce and errors and log for final status report
-
+  create_data_file
 end

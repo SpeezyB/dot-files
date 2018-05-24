@@ -1,0 +1,29 @@
+---
+:vim_plugins:
+  :vim-airline: https://github.com/bling/vim-airline
+  :nerdtree: https://github.com/scrooloose/nerdtree
+  :desert256.vim: https://github.com/vim-scripts/desert256.vim
+  :conoline.vim: https://github.com/miyakogi/conoline.vim
+  :vim-fish: https://github.com/dag/vim-fish
+  :auto-pairs: https://github.com/jiangmiao/auto-pairs
+  :tabline.vim: git://github.com/mkitt/tabline.vim.git
+  :vim-gitgutter: https://github.com/airblade/vim-gitgutter
+:git_repos:
+  :dot-files: git@github.com:SpeezyB/dot-files.git
+  :ipup: git@github.com:SpeezyB/ipup.git
+  :golang: git@github.com:SpeezyB/golang.git
+  :99bottles: git@github.com:SpeezyB/99bottles.git
+  :rear: https://github.com/rear/rear.git
+  :Question_Of_The_Day: git@github.com:SpeezyB/Question_Of_The_Day.git
+  :ranger: https://github.com/ranger/ranger.git
+  :fish-shell: https://github.com/fish-shell/fish-shell.git
+  :vim: https://github.com/vim/vim.git
+  :ruby-install: https://github.com/postmodern/ruby-install.git
+  :tig: http://github.com/jonas/tig
+  :chruby: https://github.com/postmodern/chruby.git
+:blacklisted:
+- ipup
+- Question_Of_The_Day
+- dot-files
+- golang
+- 99bottles
