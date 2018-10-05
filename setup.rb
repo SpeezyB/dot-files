@@ -1,5 +1,10 @@
 # This is a setup script to install everything in the proper place on a new install
 # TODO
+# [ ] Convert code to OOP!!!!
+# [ ] run as a cronjob  to update the yml db and compare 
+#   [ ] include the hostname / ip to id the data.yml. You can drop in different ymls to restore differnt configs
+#   [ ] dups stay, news add, olds deactivate but still stay leave for manual removal
+#     [ ] commit it to gh
 # [ ] check what distro and generate a list of required packages to the yaml file
 #   [ ] either clone or use the package manager to get those 
 #   [ ] start w/ a bash or fish script to make sure that ruby is actually installed first
