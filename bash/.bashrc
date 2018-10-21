@@ -38,6 +38,7 @@ fi
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
     xterm-color) color_prompt=yes;;
+    screen-256color) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -98,8 +99,11 @@ fi
 		alias lssh1='ssh ben@192.168.0.11'
 		alias v='vim'
 		alias speedy='speedtest --server 11621'
+    alias tmux='tmux -2'
 
-function vup ()
+export TERM=scren-256color
+
+function _vup ()
 {
 	#		cd src
 	#		./configure

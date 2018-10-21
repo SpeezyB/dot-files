@@ -164,6 +164,12 @@ alias lpssh1='ssh pi@192.168.1.101'
 alias pssh='ssh pi@werf.info -p 22063'
 alias pssh1='ssh pi@werf.info -p 22064'
 
+if [[ -n $(pgrep tmux) ]]; then
+  export TERM='screen-256color'
+else
+  export TERM='xterm-256color'
+fi
+
 # use brew vim if present
 /usr/local/bin/vim --version > /dev/null 2>&1
 BREW_VIM_INSTALLED=$?

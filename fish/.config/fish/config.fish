@@ -16,3 +16,4 @@ set -x GOPATH /home/pi/code/golang /home/pi/gh/golang
 #set -x PATH /Users/benspiessens/.gem/ruby/2.5.0/bin $PATH
 #set -x PATH /Users/benspiessens/.rubies/ruby-2.5.0/lib/ruby/gems/2.5.0/bin $PATH
 set -x PATH /usr/local/opt/sqlite/bin /usr/local/sbin /usr/local/opt/openssl/bin /usr/local/opt/libxml2/bin $PATH
+set -x TERM screen-256color
