@@ -1,0 +1,23 @@
+Some Scripts that need to be written
+------------------------------------
+
+1. backup resources and copy backups off server
+  a) manual 
+    - export xml / tar of data 
+    - copy that data to external drive 
+    - create dumps of resources
+    - copy dumps to external drive / other machine
+  b) automate manual on cronjob
+
+2. failover script
+  a) manual [all | list ]
+    - restore the latest backups of resources
+    - start the VM's
+  b) automatic
+    - ping resources and if it's down failover (from manual script) those to the other machine
+
+Current Resources
+=================
+
+  - Router          > 192.168.1.1
+  - DNS Server      > 192.168.1.6 
