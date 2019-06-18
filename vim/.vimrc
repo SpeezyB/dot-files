@@ -3,35 +3,35 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-let g:ucm_global_ucm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-let g:ucm_server_python_interpreter = '/usr/local/bin/python'
-let g:neocomplete#enable_at_startup = 1
-call vundle#end()            " required
+" call vundle#begin()
+" " alternatively, pass a path where Vundle should install plugins
+" "call vundle#begin('~/some/path/here')
+" 
+" " let Vundle manage Vundle, required
+" Plugin 'VundleVim/Vundle.vim'
+" 
+" " The following are examples of different formats supported.
+" " Keep Plugin commands between vundle#begin/end.
+" " plugin on GitHub repo
+" Plugin 'tpope/vim-fugitive'
+" " plugin from http://vim-scripts.org/vim/scripts.html
+" " Plugin 'L9'
+" " Git plugin not hosted on GitHub
+" "Plugin 'git://git.wincent.com/command-t.git'
+" " git repos on your local machine (i.e. when working on your own plugin)
+" "Plugin 'file:///home/gmarik/path/to/plugin'
+" " The sparkup vim script is in a subdirectory of this repo called vim.
+" " Pass the path to set the runtimepath properly.
+" "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" " Install L9 and avoid a Naming conflict if you've already installed a
+" " different version somewhere else.
+" " Plugin 'ascenator/L9', {'name': 'newL9'}
+" 
+" " All of your Plugins must be added before the following line
+" let g:ucm_global_ucm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" let g:ucm_server_python_interpreter = '/usr/local/bin/python'
+" let g:neocomplete#enable_at_startup = 1
+" call vundle#end()            " required
 filetype plugin indent on    " required
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -68,8 +68,11 @@ colorscheme desert256
 let g:hybrid_custom_term_colors = 1
 "colorscheme hybrid
 set backspace=indent,eol,start
+set encoding=utf-8
 " Below is to show all chars!
-set listchars=eol:¬,tab:>·,trail:~,extends:>,precedes:<,space:␣
+"set list listchars=eol:¬,tab:>·,extends:»,precedes:«,nbsp:␣,trail:•
+set listchars=eol:¬,tab:>·,extends:»,precedes:«,space:␣,trail:•
+
 " These are setting the backup dirs
 set backupdir=~/.vimbackups/swap,/tmp
 set directory=~/.vimbackups/backups,/tmp
@@ -97,7 +100,6 @@ let g:indent_guides_guide_size = 1
 
 let mapleader= " "
 let g:indent_guides_enable_on_vim_startup = 0
-"set list lcs=tab:\|\ 
 nnoremap <leader>m <C-W><C-W>
 map <leader>n :NERDTreeToggle<CR>
 map <leader>a :qa!<CR>
